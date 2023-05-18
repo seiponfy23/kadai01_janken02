@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- <script src="https://cdn.tailwindcss.com"></script> -->
+    <title>【提出用】じゃんけんリッチver.</title>
+    <link rel="stylesheet" href="css/main.css">
+    <link rel="stylesheet" href="css/output.css">
+<!-- <script src="https://cdn.jsdelivr.net/npm/chart.js"></script> -->
+</head>
+<body>
+<!-- header -->
+<header class="text-gray-600 body-font">
+    <div class="container mx-auto flex flex-wrap pt-5 flex-col md:flex-row items-center">
+        <a class="flex title-font font-medium items-center text-gray-900 mb-4 md:mb-0">
+        <svg xmlns="http://www.w3.org/2000/svg" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" class="w-10 h-10 text-white p-2 bg-indigo-500 rounded-full" viewBox="0 0 24 24">
+        <path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"></path>
+        </svg>
+        <span class="ml-3 text-xl text-gray-700">4人集めてワンピースごっこ</span>
+        </a>
+    </div>
+</header>
+<!-- header -->
+
+<section>
+    <section class="text-gray-600 body-font">
+        <div class="container px-5 mx-auto">
+            <div class="flex flex-col text-center w-full mb-14">
+                <button id="start" class="flex mx-auto mt-8 text-white bg-indigo-500 border-0 py-2 px-8 focus:outline-none hover:bg-indigo-600 rounded text-lg">クイズで仲間を集める</button>
+                <button id="j_start" class="flex mx-auto mt-8 text-white bg-indigo-500 border-0 py-2 px-8 focus:outline-none hover:bg-indigo-600 rounded text-lg">みんなで拳をあげてグーを揃える</button>
+                <button id="reset" class="flex mx-auto mt-8 text-white bg-indigo-500 border-0 py-2 px-8 focus:outline-none hover:bg-indigo-600 rounded text-lg">リセット</button>
+                <h1 id="qnop" class="sm:text-3xl text-2xl font-medium title-font my-4 text-gray-900">Qestion No.<span id="qno"></span></h1>
+                <h1 id="game" class="sm:text-3xl text-2xl font-medium title-font my-4 text-gray-900">結果は…グーが<span id="gunum">何</span>個、<span id="judge">「……」</span></h1>
+                <p id="question" class="lg:w-2/3 mx-auto leading-relaxed text-base">この問題の答えは何か、次の4つから答えよ。</p>
+
+            </div>
+            <section class="flex justify-center items-center">
+            </section>
+            <div id="quiz" class="flex flex-wrap -m-4 text-center">
+                <div class="p-4 md:w-1/4 sm:w-1/2 w-full">
+                    <div name="choices" data-value="0" class="border-2 border-gray-200 px-4 py-6 rounded-lg cursor-pointer">
+                        <h2 id="choices0" class="title-font font-medium text-3xl text-gray-900">選択肢１</h2>
+                    </div>
+                </div>
+                <div class="p-4 md:w-1/4 sm:w-1/2 w-full">
+                    <div name="choices" data-value="1" class="border-2 border-gray-200 px-4 py-6 rounded-lg cursor-pointer">
+                        <h2 id="choices1" class="title-font font-medium text-3xl text-gray-900">選択肢２</h2>
+                    </div>
+                </div>
+                <div class="p-4 md:w-1/4 sm:w-1/2 w-full">
+                    <div name="choices" data-value="2" class="border-2 border-gray-200 px-4 py-6 rounded-lg cursor-pointer">
+                        <h2 id="choices2" class="title-font font-medium text-3xl text-gray-900">選択肢３</h2>
+                    </div>
+                </div>
+                <div class="p-4 md:w-1/4 sm:w-1/2 w-full">
+                    <div name="choices" data-value="3" class="border-2 border-gray-200 px-4 py-6 rounded-lg cursor-pointer">
+                    <h2 id="choices3" class="title-font font-medium text-3xl text-gray-900">選択肢４</h2>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+</section>
+
+<section>
+    <section id="janken" class="text-gray-600 body-font">
+        <div class="container px-5 py-6 mx-auto">
+            <div class="flex flex-wrap -m-4 text-center">
+                <div id="join0" class="p-4 sm:w-1/4 w-1/2">
+                    <div id="cpu_hands0"></div>
+                    <img src="img/onepiece01_luffy.png" alt="">
+                    <h2 id="player0" class="title-font font-medium sm:text-4xl text-3xl text-gray-900">ルフィ</h2>
+                </div>
+                <div id="join1" class="p-4 sm:w-1/4 w-1/2">
+                    <div id="cpu_hands1"></div>
+                    <img src="img/onepiece02_zoro_bandana.png" alt="">
+                    <h2 id="player1" class="title-font font-medium sm:text-4xl text-3xl text-gray-900">ゾロ</h2>
+                </div>
+                <div id="join2" class="p-4 sm:w-1/4 w-1/2">
+                    <div id="cpu_hands2"></div>
+                    <img src="img/onepiece03_nami.png" alt="">
+                    <h2 id="player2" class="title-font font-medium sm:text-4xl text-3xl text-gray-900">ナミ</h2>
+                </div>
+                <div id="join3" class="p-4 sm:w-1/4 w-1/2">
+                    <div id="cpu_hands3"></div>
+                    <img src="img/onepiece04_usopp_sogeking.png" alt="">
+                    <h2 id="player3" class="title-font font-medium sm:text-4xl text-3xl text-gray-900">そげキング</h2>
+                </div>
+                <!-- <div id="join4" class="p-4 sm:w-1/4 w-1/2">
+                    <div id="cpu_hands4"></div>
+                    <img src="img/onepiece05_sanji.png" alt="">
+                    <h2 id="player4" class="title-font font-medium sm:text-4xl text-3xl text-gray-900">サンジ</h2>
+                </div>
+                <div id="join5" class="p-4 sm:w-1/4 w-1/2">
+                    <div id="cpu_hands5"></div>
+                    <img src="img/onepiece06_chopper.png" alt="">
+                    <h2 id="player5" class="title-font font-medium sm:text-4xl text-3xl text-gray-900">チョッパー</h2>
+                </div> -->
+            </div>
+        </div>
+    </section>
+</section>
+<div class="flex flex-col text-center w-full mt-14">
+    <p class="lg:w-2/3 mx-auto leading-relaxed text-base">今後のための作戦をメモする（SAVEボタンを忘れずに）</p>
+</div>
+
+<section>
+    <section class="text-gray-600 body-font">
+        <div class="container px-5 mx-auto">
+            <div class="flex flex-col text-center w-full mb-14">
+                <div id="notespace" class="flex justify-center my-2">
+                    <div class="w-1/4 ">
+                        <button id="save" class="flex mx-auto text-white bg-gray-500 border-0 py-2 px-12 focus:outline-none hover:bg-indigo-600 rounded text-lg">SAVE</button>
+                        <button id="clear" class="flex mx-auto mt-4 text-white bg-gray-500 border-0 py-2 px-10 focus:outline-none hover:bg-indigo-600 rounded text-lg">CLEAR</button>
+                    </div>
+                    <textarea name="" id="memo" cols="30" rows="4" placeholder="クイズから得た学びを記述する" class="w-full bg-gray-100 py-1 px-2"></textarea>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div style="width:500px;" >
+    <!-- <canvas id="pie"></canvas> -->
+</div>
+<footer class="text-gray-600 body-font">
+    <div class="container px-5 py-8 mx-auto flex items-center sm:flex-row flex-col">
+        <a class="flex title-font font-medium items-center md:justify-start justify-center text-gray-900">
+        <svg xmlns="http://www.w3.org/2000/svg" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" class="w-10 h-10 text-white p-2 bg-indigo-500 rounded-full" viewBox="0 0 24 24">
+            <path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"></path>
+        </svg>
+        <span class="ml-3 text-xl">4人集めてワンピースごっこ</span>
+        </a>
+        <p class="text-sm text-gray-500 sm:ml-4 sm:pl-4 sm:border-l-2 sm:border-gray-200 sm:py-2 sm:mt-0 mt-4">© 2xxx  新時代 —
+        <a href="https://twitter.com/knyttneve" class="text-gray-600 ml-1" rel="noopener noreferrer" target="_blank">@チーズアカデミー</a>
+        </p>
+    </div>
+</footer>
+
+<!-- jqueryを先に記載する -->
+<script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+<script src="js/app.js"></script>
+
+</body>
+</html>
